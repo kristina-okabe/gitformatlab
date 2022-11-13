@@ -13,7 +13,7 @@ sigx=[0,1;1,0];sigy=[0,-i;i,0];sigz=[1,0;0,-1];
 % eigvl=zeros(knum2,knum1,bnum);
 eigvl=zeros(2,1);
 eigw=zeros(2,2);
-Berry=zeros(knum2,knum1);
+% Berry=zeros(knum2,knum1);
 kt=0.0026*3;%0.0026电子伏特，相当于30K
 tau=1;%弛豫时间
 %可调参数，用于向ode函数传递参数
@@ -140,7 +140,7 @@ for i=1:knum1
               energy=eigvl(2)-B*M-fermi;
               g1(:)=v(:,2); %由于磁场垂直于二维面，这里的第一个因子函数等于\tilde{v} 
               s=1-1/(1+exp(energy/kt));
-              pef=-1/kt*s/(1+exp(energy/kt))%费米分布函数求导，energy
+              pef=-1/kt*s/(1+exp(energy/kt));%费米分布函数求导，energy
             end
             %接下来计算g2，需要乘上衰减因子后对时间积分（离散求和），只计算上能带，即能带2
             g2(:)=g2(:)+dt/tau*exp(t(l)/tau)*v(:,2)*invD;
